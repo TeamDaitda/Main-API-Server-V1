@@ -1,6 +1,6 @@
 package com.daitda.backend.controller;
 
-import com.daitda.backend.Security.SecurityService;
+import com.daitda.backend.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

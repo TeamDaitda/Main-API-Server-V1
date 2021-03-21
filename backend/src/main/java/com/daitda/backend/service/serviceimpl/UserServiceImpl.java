@@ -1,4 +1,4 @@
-package com.daitda.backend.serviceimpl;
+package com.daitda.backend.service.serviceimpl;
 
 import com.daitda.backend.dao.UserDao;
 import com.daitda.backend.model.User;

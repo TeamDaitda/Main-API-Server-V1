@@ -1,4 +1,4 @@
-package com.daitda.backend.Security;
+package com.daitda.backend.security;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
