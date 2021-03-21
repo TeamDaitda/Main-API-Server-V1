@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Service
 public class SecurityServiceImpl implements SecurityService{
-    private static final String SECRET_KEY = "aasjjkjaskjdl1k2naskjkdakj34ckhgkgkfyufyt8sa";
+    public static final String SECRET_KEY = "aasjjkjaskjdl1k2naskjkdakj34ckhgkgkfyufyt8sa";
 
     //  서버에서 토큰을 만들어서 발행하는 역할
     @Override
