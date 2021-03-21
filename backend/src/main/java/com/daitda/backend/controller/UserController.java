@@ -1,5 +1,6 @@
 package com.daitda.backend.controller;
 
+import com.daitda.backend.security.TokenRequired;
 import com.daitda.backend.model.User;
 import com.daitda.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
+
     @Autowired
     private UserService userService;
 
+    @TokenRequired
     @GetMapping("")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
