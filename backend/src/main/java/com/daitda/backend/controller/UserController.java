@@ -1,44 +1,46 @@
 package com.daitda.backend.controller;
 
-import com.daitda.backend.security.TokenRequired;
-import com.daitda.backend.model.User;
-import com.daitda.backend.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.daitda.backend.dto.UsersListResponseDto;
+import com.daitda.backend.dto.UsersResponseDto;
+import com.daitda.backend.dto.UsersSaveRequestDto;
+import com.daitda.backend.dto.UsersUpdateRequestDto;
+import com.daitda.backend.service.UsersService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/users")
 public class UserController {
+    private UsersService usersService;
 
+//    @TokenRequired
 
-    @Autowired
-    private UserService userService;
-
-    @TokenRequired
     @GetMapping("")
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
-
-    @GetMapping("/{userId}")
-    public User getUserByUserId(@PathVariable String userId) {
-        return userService.getUserByUserId(userId);
+    public List<UsersListResponseDto> index() {
+        return usersService.findAllDesc();
     }
 
     @PostMapping("")
-    public User registerUser(@RequestBody User user){
-        return userService.registerUser(user);
+    public long save(@RequestBody UsersSaveRequestDto requestDto) {
+        return usersService.save(requestDto);
     }
 
-    @PutMapping("/{userId}")
-    public void modifyUser(@PathVariable String userId, @RequestBody User user) {
-        userService.modifyUser(userId, user);
+    @PutMapping("/{id}")
+    public Long update(@PathVariable Long id, @RequestBody UsersUpdateRequestDto requestDto) {
+        return usersService.update(id, requestDto);
     }
 
-    @DeleteMapping("/{userId")
-    public void removeUser(@PathVariable String userId) {
-        userService.removeUser(userId);
+    @DeleteMapping("{id}")
+    public Long delete(@PathVariable Long id) {
+        usersService.delete(id);
+        return id;
+    }
+
+    @GetMapping("/{id}")
+    public UsersResponseDto findById(@PathVariable Long id) {
+        return usersService.findById(id);
     }
 }
