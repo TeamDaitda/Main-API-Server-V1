@@ -1,6 +1,6 @@
-package com.daitda.backend.dto;
+package com.daitda.backend.dto.users;
 
-import com.daitda.backend.domain.Users;
+import com.daitda.backend.domain.users.Users;
 import lombok.Getter;
 
 @Getter

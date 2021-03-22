@@ -1,11 +1,12 @@
 package com.daitda.backend.controller;
 
-import com.daitda.backend.dto.UsersListResponseDto;
-import com.daitda.backend.dto.UsersResponseDto;
-import com.daitda.backend.dto.UsersSaveRequestDto;
-import com.daitda.backend.dto.UsersUpdateRequestDto;
+import com.daitda.backend.dto.users.UsersListResponseDto;
+import com.daitda.backend.dto.users.UsersResponseDto;
+import com.daitda.backend.dto.users.UsersSaveRequestDto;
+import com.daitda.backend.dto.users.UsersUpdateRequestDto;
 import com.daitda.backend.service.UsersService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private UsersService usersService;
 
-//    @TokenRequired
+    @Autowired
+    private UsersService usersService;
 
     @GetMapping("")
     public List<UsersListResponseDto> index() {
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("")
-    public long save(@RequestBody UsersSaveRequestDto requestDto) {
+    public Long save(@RequestBody UsersSaveRequestDto requestDto) {
         return usersService.save(requestDto);
     }
 
@@ -33,7 +34,7 @@ public class UserController {
         return usersService.update(id, requestDto);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public Long delete(@PathVariable Long id) {
         usersService.delete(id);
         return id;

@@ -1,4 +1,4 @@
-package com.daitda.backend.dto;
+package com.daitda.backend.dto.users;
 
 import lombok.Builder;
 import lombok.Getter;

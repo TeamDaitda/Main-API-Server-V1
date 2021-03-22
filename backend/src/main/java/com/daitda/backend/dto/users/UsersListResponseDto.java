@@ -1,7 +1,9 @@
-package com.daitda.backend.dto;
+package com.daitda.backend.dto.users;
 
-import com.daitda.backend.domain.Users;
+import com.daitda.backend.domain.users.Users;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class UsersListResponseDto {
     private Long id;
     private String name;

@@ -1,17 +1,17 @@
-package com.daitda.backend.domain;
+package com.daitda.backend.domain.users;
 
+
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "users")
+@Table
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

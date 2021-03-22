@@ -1,11 +1,11 @@
 package com.daitda.backend.service;
 
-import com.daitda.backend.domain.Users;
-import com.daitda.backend.domain.UsersRepository;
-import com.daitda.backend.dto.UsersListResponseDto;
-import com.daitda.backend.dto.UsersResponseDto;
-import com.daitda.backend.dto.UsersSaveRequestDto;
-import com.daitda.backend.dto.UsersUpdateRequestDto;
+import com.daitda.backend.domain.users.Users;
+import com.daitda.backend.domain.users.UsersRepository;
+import com.daitda.backend.dto.users.UsersListResponseDto;
+import com.daitda.backend.dto.users.UsersResponseDto;
+import com.daitda.backend.dto.users.UsersSaveRequestDto;
+import com.daitda.backend.dto.users.UsersUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ public class UsersService {
     private final UsersRepository usersRepository;
 
     @Transactional
-    public long save(UsersSaveRequestDto requestDto) {
+    public Long save(UsersSaveRequestDto requestDto) {
         return usersRepository.save(requestDto.toEntity()).getId();
     }
 
