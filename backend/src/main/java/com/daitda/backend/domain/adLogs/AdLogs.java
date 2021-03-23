@@ -1,5 +1,6 @@
 package com.daitda.backend.domain.adLogs;
 
+import com.daitda.backend.domain.BaseTimeEntity;
 import com.daitda.backend.domain.ads.Ads;
 import com.daitda.backend.domain.users.Users;
 import lombok.AccessLevel;
@@ -8,16 +9,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table
-public class AdLogs {
+public class AdLogs extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -5,9 +5,6 @@ import com.daitda.backend.domain.ads.Ads;
 import com.daitda.backend.domain.users.Users;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
-import java.util.List;
-import java.util.Set;
-
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class AdLogsListResponseDto {
     private Long id;

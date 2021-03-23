@@ -6,6 +6,7 @@ import com.daitda.backend.domain.ads.Ads;
 import com.daitda.backend.domain.ads.AdsRepository;
 import com.daitda.backend.domain.users.Users;
 import com.daitda.backend.domain.users.UsersRepository;
+import com.daitda.backend.dto.adLogs.AdLogsListResponseDto;
 import com.daitda.backend.dto.ads.AdsListResponseDto;
 import com.daitda.backend.dto.ads.AdsResponseDto;
 import com.daitda.backend.dto.ads.AdsSaveRequestDto;
@@ -56,6 +57,13 @@ public class AdsService {
     public List<AdsListResponseDto> findAllDesc() {
         return adsRepository.findAllDesc().stream()
                 .map(AdsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<AdLogsListResponseDto> findLogsAllDesc() {
+        return adLogsRepository.findAllDesc().stream()
+                .map(AdLogsListResponseDto::new)
                 .collect(Collectors.toList());
     }
 }

@@ -1,5 +1,7 @@
 package com.daitda.backend.controller;
 
+import com.daitda.backend.domain.adLogs.AdLogs;
+import com.daitda.backend.dto.adLogs.AdLogsListResponseDto;
 import com.daitda.backend.dto.ads.AdsListResponseDto;
 import com.daitda.backend.dto.ads.AdsResponseDto;
 import com.daitda.backend.dto.ads.AdsSaveRequestDto;
@@ -28,12 +30,6 @@ public class AdsController {
         return adsService.save(requestDto);
     }
 
-    // View ++
-    @PutMapping("/view")
-    public Long update(@RequestBody AdsUpdateRequestDto requestDto) {
-        return adsService.update(requestDto);
-    }
-
     @DeleteMapping("/{id}")
     public Long delete(@PathVariable Long id) {
         adsService.delete(id);
@@ -43,5 +39,16 @@ public class AdsController {
     @GetMapping("/{id}")
     public AdsResponseDto findById(@PathVariable Long id) {
         return adsService.findById(id);
+    }
+
+    // View ++
+    @PutMapping("/view")
+    public Long update(@RequestBody AdsUpdateRequestDto requestDto) {
+        return adsService.update(requestDto);
+    }
+
+    @GetMapping("/logs")
+    public List<AdLogsListResponseDto> logsIndex() {
+        return adsService.findLogsAllDesc();
     }
 }
