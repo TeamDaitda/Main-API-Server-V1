@@ -18,6 +18,4 @@ public class UsersResponseDto {
         this.phone = entity.getPhone();
         this.category = entity.getCategory();
     }
-
-
 }
