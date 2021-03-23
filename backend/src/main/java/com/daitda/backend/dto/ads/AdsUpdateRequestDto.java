@@ -5,10 +5,13 @@ import lombok.Getter;
 
 @Getter
 public class AdsUpdateRequestDto {
-    private int view;
+
+    private Long userId;
+    private Long adId;
 
     @Builder
-    public AdsUpdateRequestDto() {
-        view++;
+    public AdsUpdateRequestDto(Long userId, Long adId) {
+        this.userId = userId;
+        this.adId = adId;
     }
 }

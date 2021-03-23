@@ -1,7 +1,12 @@
 package com.daitda.backend.service;
 
+import com.daitda.backend.domain.adLogs.AdLogs;
+import com.daitda.backend.domain.adLogs.AdLogsRepository;
 import com.daitda.backend.domain.ads.Ads;
 import com.daitda.backend.domain.ads.AdsRepository;
+import com.daitda.backend.domain.users.Users;
+import com.daitda.backend.domain.users.UsersRepository;
+import com.daitda.backend.dto.adLogs.AdLogsListResponseDto;
 import com.daitda.backend.dto.ads.AdsListResponseDto;
 import com.daitda.backend.dto.ads.AdsResponseDto;
 import com.daitda.backend.dto.ads.AdsSaveRequestDto;
@@ -17,7 +22,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class AdsService {
+    private final UsersRepository usersRepository;
     private final AdsRepository adsRepository;
+    private final AdLogsRepository adLogsRepository;
 
     @Transactional
     public Long save(AdsSaveRequestDto requestDto) {
@@ -25,10 +32,13 @@ public class AdsService {
     }
 
     @Transactional
-    public Long update(Long id) {
-        Ads ads = adsRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 광고가 없습니다. id = " + id));
+    public Long update(AdsUpdateRequestDto requestDto) {
+        Users users = usersRepository.findById(requestDto.getUserId()).orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id = " + requestDto.getUserId()));
+        Ads ads = adsRepository.findById(requestDto.getAdId()).orElseThrow(()-> new IllegalArgumentException("해당 광고가 없습니다. id = " + requestDto.getAdId()));
+        AdLogs adLogs = new AdLogs(users, ads);
+        adLogsRepository.save(adLogs);
         ads.updateViews();
-        return id;
+        return adLogs.getId();
     }
 
     @Transactional
@@ -47,6 +57,13 @@ public class AdsService {
     public List<AdsListResponseDto> findAllDesc() {
         return adsRepository.findAllDesc().stream()
                 .map(AdsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<AdLogsListResponseDto> findLogsAllDesc() {
+        return adLogsRepository.findAllDesc().stream()
+                .map(AdLogsListResponseDto::new)
                 .collect(Collectors.toList());
     }
 }
