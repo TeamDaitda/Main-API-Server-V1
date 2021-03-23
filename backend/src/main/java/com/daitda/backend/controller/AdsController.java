@@ -29,9 +29,9 @@ public class AdsController {
     }
 
     // View ++
-    @PutMapping("/{id}")
-    public Long update(@PathVariable Long id) {
-        return adsService.update(id);
+    @PutMapping("/view")
+    public Long update(@RequestBody AdsUpdateRequestDto requestDto) {
+        return adsService.update(requestDto);
     }
 
     @DeleteMapping("/{id}")
