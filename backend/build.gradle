@@ -31,6 +31,9 @@ dependencies {
 
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client' // MariaDB
 	compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.0'
+
+
+
 }
 
 test {
