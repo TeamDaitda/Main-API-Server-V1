@@ -26,20 +26,20 @@ public class UsersService {
 
     @Transactional
     public Long update(Long id, UsersUpdateRequestDto requestDto) {
-        Users users = usersRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+        Users users = usersRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id = " + id));
         users.updateCategory(requestDto.getCategory());
         return id;
     }
 
     @Transactional
     public void delete(Long id) {
-        Users users = usersRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+        Users users = usersRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id = " + id));
         usersRepository.delete(users);
     }
 
     @Transactional
     public UsersResponseDto findById(Long id) {
-        Users entity = usersRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
+        Users entity = usersRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id = " + id));
         return new UsersResponseDto(entity);
     }
 
