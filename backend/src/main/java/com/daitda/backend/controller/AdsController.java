@@ -1,6 +1,5 @@
 package com.daitda.backend.controller;
 
-import com.daitda.backend.domain.adLogs.AdLogs;
 import com.daitda.backend.dto.adLogs.AdLogsListResponseDto;
 import com.daitda.backend.dto.ads.AdsListResponseDto;
 import com.daitda.backend.dto.ads.AdsResponseDto;
