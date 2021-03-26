@@ -1,5 +1,6 @@
-package com.daitda.backend.advertisement;
+package com.daitda.backend.advertisement.controller;
 
+import com.daitda.backend.advertisement.service.AdsService;
 import com.daitda.backend.advertisement_log.dto.AdLogsListResponseDto;
 import com.daitda.backend.advertisement.dto.AdsListResponseDto;
 import com.daitda.backend.advertisement.dto.AdsResponseDto;

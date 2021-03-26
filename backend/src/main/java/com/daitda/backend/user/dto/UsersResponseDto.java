@@ -5,11 +5,11 @@ import lombok.Getter;
 
 @Getter
 public class UsersResponseDto {
-    private Long id;
-    private String name;
-    private String affiliation;
-    private String phone;
-    private int category;
+    private final Long id;
+    private final String name;
+    private final String affiliation;
+    private final String phone;
+    private final int category;
 
     public UsersResponseDto(Users entity) {
         this.id = entity.getId();

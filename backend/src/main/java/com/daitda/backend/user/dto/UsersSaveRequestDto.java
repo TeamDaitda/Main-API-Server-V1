@@ -21,7 +21,7 @@ public class UsersSaveRequestDto {
         this.category = category;
     }
 
-    public Users toEntity(){
+    public Users toEntity() {
         return Users.builder()
                 .name(name)
                 .affiliation(affiliation)

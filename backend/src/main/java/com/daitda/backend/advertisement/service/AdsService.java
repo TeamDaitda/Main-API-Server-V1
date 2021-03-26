@@ -1,4 +1,4 @@
-package com.daitda.backend.advertisement;
+package com.daitda.backend.advertisement.service;
 
 import com.daitda.backend.advertisement_log.domain.AdLogs;
 import com.daitda.backend.advertisement_log.domain.AdLogsRepository;
@@ -33,8 +33,8 @@ public class AdsService {
 
     @Transactional
     public Long update(AdsUpdateRequestDto requestDto) {
-        Users users = usersRepository.findById(requestDto.getUserId()).orElseThrow(()-> new IllegalArgumentException("해당 사용자가 없습니다. id = " + requestDto.getUserId()));
-        Ads ads = adsRepository.findById(requestDto.getAdId()).orElseThrow(()-> new IllegalArgumentException("해당 광고가 없습니다. id = " + requestDto.getAdId()));
+        Users users = usersRepository.findById(requestDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id = " + requestDto.getUserId()));
+        Ads ads = adsRepository.findById(requestDto.getAdId()).orElseThrow(() -> new IllegalArgumentException("해당 광고가 없습니다. id = " + requestDto.getAdId()));
         AdLogs adLogs = new AdLogs(users, ads);
         adLogsRepository.save(adLogs);
         ads.updateViews();
@@ -43,13 +43,13 @@ public class AdsService {
 
     @Transactional
     public void delete(Long id) {
-        Ads ads = adsRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 광고가 없습니다. id = " + id));
+        Ads ads = adsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 광고가 없습니다. id = " + id));
         adsRepository.delete(ads);
     }
 
     @Transactional
     public AdsResponseDto findById(Long id) {
-        Ads entity = adsRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("해당 광고가 없습니다. id = " + id));
+        Ads entity = adsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 광고가 없습니다. id = " + id));
         return new AdsResponseDto(entity);
     }
 

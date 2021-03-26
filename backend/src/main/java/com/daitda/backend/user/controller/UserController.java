@@ -13,11 +13,10 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 
-    @Autowired
-    private UsersService usersService;
+    private final UsersService usersService;
 
     @GetMapping("")
     public List<UsersListResponseDto> index() {
@@ -43,5 +42,10 @@ public class UserController {
     @GetMapping("/{id}")
     public UsersResponseDto findById(@PathVariable Long id) {
         return usersService.findById(id);
+    }
+
+    @GetMapping("/name/{name}")
+    public List<UsersListResponseDto> findByName(@PathVariable String name) {
+        return usersService.findByName(name);
     }
 }
