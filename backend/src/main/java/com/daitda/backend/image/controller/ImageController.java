@@ -18,7 +18,7 @@ public class ImageController {
     private final ImageService imageService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("")
+    @GetMapping(value = "", produces = "application/json; charset=utf8")
     public List<ImageListResponseDto> index() {
         return imageService.findAllDesc();
     }
@@ -34,7 +34,7 @@ public class ImageController {
         return id;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = "application/json; charset=utf8")
     public ImageResponseDto findById(@PathVariable Long id) {
         return imageService.findById(id);
     }

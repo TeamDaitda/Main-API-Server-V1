@@ -18,7 +18,7 @@ public class UserController {
 
     private final UsersService usersService;
 
-    @GetMapping("")
+    @GetMapping(value = "", produces = "application/json; charset=utf8")
     public List<UsersListResponseDto> index() {
         return usersService.findAllDesc();
     }
@@ -39,12 +39,12 @@ public class UserController {
         return id;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = "application/json; charset=utf8")
     public UsersResponseDto findById(@PathVariable Long id) {
         return usersService.findById(id);
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping(value = "/name/{name}", produces = "application/json; charset=utf8")
     public List<UsersListResponseDto> findByName(@PathVariable String name) {
         return usersService.findByName(name);
     }
