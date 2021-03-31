@@ -19,7 +19,7 @@ public class AdsController {
     @Autowired
     private AdsService adsService;
 
-    @GetMapping("")
+    @GetMapping(value = "", produces = "application/json; charset=utf8")
     public List<AdsListResponseDto> index() {
         return adsService.findAllDesc();
     }
@@ -35,7 +35,7 @@ public class AdsController {
         return id;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = "application/json; charset=utf8")
     public AdsResponseDto findById(@PathVariable Long id) {
         return adsService.findById(id);
     }
@@ -46,7 +46,7 @@ public class AdsController {
         return adsService.update(requestDto);
     }
 
-    @GetMapping("/logs")
+    @GetMapping(value = "/logs", produces = "application/json; charset=utf8")
     public List<AdLogsListResponseDto> logsIndex() {
         return adsService.findLogsAllDesc();
     }

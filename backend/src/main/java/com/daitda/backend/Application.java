@@ -10,10 +10,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 @EnableAspectJAutoProxy
 @EnableJpaAuditing
-public class BackendApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BackendApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
