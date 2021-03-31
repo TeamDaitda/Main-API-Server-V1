@@ -10,4 +10,5 @@ public interface AdLogsRepository extends JpaRepository<AdLogs, Long> {
     List<AdLogs> findAllDesc();
 
     List<AdLogs> findByUsersId(Long users_id);
+    List<AdLogs> findByAdsId(Long ads_id);
 }
