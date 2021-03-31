@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 public class AdsResponseDto {
-    private Long id;
-    private String title;
-    private String agency;
-    private int view;
+    private final Long id;
+    private final String title;
+    private final String agency;
+    private final int view;
 
     public AdsResponseDto(Ads entity) {
         this.id = entity.getId();

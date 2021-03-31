@@ -6,8 +6,8 @@ import lombok.Getter;
 @Getter
 public class AdsUpdateRequestDto {
 
-    private Long userId;
-    private Long adId;
+    private final Long userId;
+    private final Long adId;
 
     @Builder
     public AdsUpdateRequestDto(Long userId, Long adId) {
