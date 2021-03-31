@@ -14,10 +14,10 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/ads")
+@RequestMapping("/ad")
 public class AdsController {
-    @Autowired
-    private AdsService adsService;
+
+    private final AdsService adsService;
 
     @GetMapping(value = "", produces = "application/json; charset=utf8")
     public List<AdsListResponseDto> index() {
@@ -40,14 +40,18 @@ public class AdsController {
         return adsService.findById(id);
     }
 
-    // View ++
     @PutMapping("/view")
     public Long update(@RequestBody AdsUpdateRequestDto requestDto) {
         return adsService.update(requestDto);
     }
 
-    @GetMapping(value = "/logs", produces = "application/json; charset=utf8")
+    @GetMapping(value = "/log", produces = "application/json; charset=utf8")
     public List<AdLogsListResponseDto> logsIndex() {
         return adsService.findLogsAllDesc();
+    }
+
+    @GetMapping(value = "/log/{id}", produces = "application/json; charset=utf-8")
+    public List<AdLogsListResponseDto> logsOneIndex(@PathVariable Long id) {
+        return adsService.findLogsByLogsId(id);
     }
 }

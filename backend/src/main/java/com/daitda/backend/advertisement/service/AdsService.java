@@ -66,4 +66,11 @@ public class AdsService {
                 .map(AdLogsListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional(readOnly = true)
+    public List<AdLogsListResponseDto> findLogsByLogsId(Long id) {
+        return adLogsRepository.findByAdsId(id).stream()
+                .map(AdLogsListResponseDto::new)
+                .collect(Collectors.toList());
+    }
 }
