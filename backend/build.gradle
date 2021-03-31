@@ -24,8 +24,9 @@ dependencies {
 
 	implementation 'javax.xml.bind:jaxb-api'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {	//	JUnit5
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 	runtime 'io.jsonwebtoken:jjwt-impl:0.11.2'
 	runtime 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 
@@ -33,6 +34,8 @@ dependencies {
 	compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.0'
 
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.6.RELEASE'	//	aws s3
+
+
 }
 
 test {

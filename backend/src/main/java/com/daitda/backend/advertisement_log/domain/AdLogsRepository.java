@@ -8,4 +8,6 @@ import java.util.List;
 public interface AdLogsRepository extends JpaRepository<AdLogs, Long> {
     @Query("SELECT p FROM AdLogs p ORDER BY p.id DESC")
     List<AdLogs> findAllDesc();
+
+    List<AdLogs> findByUsersId(Long users_id);
 }

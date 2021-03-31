@@ -1,5 +1,8 @@
 package com.daitda.backend.user.service;
 
+import com.daitda.backend.advertisement_log.domain.AdLogs;
+import com.daitda.backend.advertisement_log.domain.AdLogsRepository;
+import com.daitda.backend.advertisement_log.dto.AdLogsListResponseDto;
 import com.daitda.backend.user.domain.Users;
 import com.daitda.backend.user.domain.UsersRepository;
 import com.daitda.backend.user.dto.UsersListResponseDto;
@@ -18,6 +21,7 @@ import java.util.stream.Collectors;
 public class UsersService {
 
     private final UsersRepository usersRepository;
+    private final AdLogsRepository adLogsRepository;
 
     @Transactional
     public Long save(UsersSaveRequestDto requestDto) {
@@ -34,6 +38,8 @@ public class UsersService {
     @Transactional
     public void delete(Long id) {
         Users users = usersRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id = " + id));
+        List<AdLogs> adLogs = adLogsRepository.findByUsersId(id);
+        adLogs.forEach(element -> adLogsRepository.deleteById(element.getId()));
         usersRepository.delete(users);
     }
 
