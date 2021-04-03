@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -24,12 +23,12 @@ public class ResultService {
     private final ResultRepository resultRepository;
 
     @Transactional
-    public Long save(ResultSaveRequestDto requestDto) {
+    public Long save(Long id) {
         Users users = usersRepository
-                .findById(requestDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id = " + requestDto.getUserId()));
+                .findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id = " + id));
         Image image = imageRepository
-                .findByUsersId(requestDto.getUserId());
+                .findByUsersId(id).get(0);
         Result result = new Result(users, image);
         resultRepository.save(result);
         return result.getId();

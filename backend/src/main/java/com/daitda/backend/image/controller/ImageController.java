@@ -1,6 +1,7 @@
 package com.daitda.backend.image.controller;
 
 import com.daitda.backend.file.service.FileUploadService;
+import com.daitda.backend.image.domain.Image;
 import com.daitda.backend.image.dto.ImageListResponseDto;
 import com.daitda.backend.image.dto.ImageResponseDto;
 import com.daitda.backend.image.dto.ImageSaveRequestDto;
@@ -22,6 +23,10 @@ public class ImageController {
     public List<ImageListResponseDto> index() {
         return imageService.findAllDesc();
     }
+    @GetMapping(value = "/userId/{id}", produces = "application/json; charset=utf8")
+    public Image findByUserId(@PathVariable Long id) {
+        return imageService.findByUserId(id);
+    }
 
     @PostMapping("")
     public Long save(@RequestBody ImageSaveRequestDto requestDto) {
@@ -33,6 +38,7 @@ public class ImageController {
         imageService.delete(id);
         return id;
     }
+
 
     @GetMapping(value = "/{id}", produces = "application/json; charset=utf8")
     public ImageResponseDto findById(@PathVariable Long id) {

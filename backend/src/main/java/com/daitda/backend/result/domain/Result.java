@@ -19,11 +19,11 @@ public class Result {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "users_id", nullable = false)
+    @JoinColumn(name = "users_id")
     private Users users;
 
     @OneToOne
-    @JoinColumn(name = "images_id", nullable = false)
+    @JoinColumn(name = "images_id")
     private Image image;
 
     @Builder

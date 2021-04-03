@@ -14,13 +14,18 @@ import java.util.List;
 public class ResultController {
     private final ResultService resultService;
 
-    @PostMapping("")
-    public Long save(@RequestBody ResultSaveRequestDto requestDto) {
-        return resultService.save(requestDto);
-    }
-
     @GetMapping(value = "", produces = "application/json; charset=utf8")
     public List<ResultListResponseDto> index() {
         return resultService.findAllDesc();
     }
+
+    @PostMapping("/{id}")
+    public Long save(@PathVariable Long id) {
+        return resultService.save(id);
+    }
+
+//    @GetMapping("/{id}")
+//    public Long findByUserId(@PathVariable Long id) {
+//        return 1;
+//    }
 }

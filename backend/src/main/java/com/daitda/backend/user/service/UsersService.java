@@ -62,6 +62,4 @@ public class UsersService {
                 .map(UsersListResponseDto::new)
                 .collect(Collectors.toList());
     }
-
-
 }
