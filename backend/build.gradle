@@ -36,6 +36,9 @@ dependencies {
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.6.RELEASE'	//	aws s3
 
 	compile('org.springframework.boot:spring-boot-starter-mustache')	//	Mustache
+
+	compile 'io.springfox:springfox-swagger2:2.9.2'
+	compile 'io.springfox:springfox-swagger-ui:2.9.2'	//	Swagger
 }
 
 test {
