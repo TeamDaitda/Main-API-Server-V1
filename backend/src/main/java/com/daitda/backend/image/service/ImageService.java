@@ -40,6 +40,11 @@ public class ImageService {
         return new ImageResponseDto(entity);
     }
 
+    @Transactional
+    public Image findByUserId(Long id) {
+        return imageRepository.findByUsersId(id).get(0);
+    }
+
     @Transactional(readOnly = true)
     public List<ImageListResponseDto> findAllDesc() {
         return imageRepository.findAllDesc().stream()

@@ -8,4 +8,6 @@ import java.util.List;
 public interface ImageRepository extends JpaRepository<Image, Long> {
     @Query("SELECT p FROM Image p ORDER BY p.id DESC")
     List<Image> findAllDesc();
+
+    List<Image> findByUsersId(Long users_id);
 }
