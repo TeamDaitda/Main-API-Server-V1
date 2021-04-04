@@ -5,6 +5,7 @@ import com.daitda.backend.image.domain.ImageRepository;
 import com.daitda.backend.result.domain.Result;
 import com.daitda.backend.result.domain.ResultRepository;
 import com.daitda.backend.result.dto.ResultListResponseDto;
+import com.daitda.backend.result.dto.ResultResponseDto;
 import com.daitda.backend.result.dto.ResultSaveRequestDto;
 import com.daitda.backend.user.domain.Users;
 import com.daitda.backend.user.domain.UsersRepository;
@@ -32,6 +33,12 @@ public class ResultService {
         Result result = new Result(users, image);
         resultRepository.save(result);
         return result.getId();
+    }
+
+    @Transactional
+    public ResultResponseDto findByUsersId(Long id) {
+        Result entity = resultRepository.findByUsersId(id);
+        return new ResultResponseDto(entity);
     }
 
     @Transactional(readOnly = true)

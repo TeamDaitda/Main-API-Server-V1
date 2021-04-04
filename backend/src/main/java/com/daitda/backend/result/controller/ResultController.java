@@ -1,8 +1,10 @@
 package com.daitda.backend.result.controller;
 
 import com.daitda.backend.result.dto.ResultListResponseDto;
+import com.daitda.backend.result.dto.ResultResponseDto;
 import com.daitda.backend.result.dto.ResultSaveRequestDto;
 import com.daitda.backend.result.service.ResultService;
+import com.daitda.backend.user.dto.UsersResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,8 +26,8 @@ public class ResultController {
         return resultService.save(id);
     }
 
-//    @GetMapping("/{id}")
-//    public Long findByUserId(@PathVariable Long id) {
-//        return 1;
-//    }
+    @GetMapping("/{id}")
+    public ResultResponseDto findByUserId(@PathVariable Long id) {
+        return resultService.findByUsersId(id);
+    }
 }
