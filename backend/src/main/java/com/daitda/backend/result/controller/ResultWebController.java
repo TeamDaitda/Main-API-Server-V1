@@ -1,6 +1,6 @@
 package com.daitda.backend.result.controller;
 
-import com.daitda.backend.result.dto.ResultResponseDto;
+import com.daitda.backend.result.dto.ResultDto;
 import com.daitda.backend.result.service.ResultService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ public class ResultWebController {
 
     @GetMapping("/{id}")
     public String findByUserId(@PathVariable Long id, Model model) {
-        ResultResponseDto dto = resultService.findByUsersId(id);
+        ResultDto.Response dto = resultService.findByUsersId(id);
         model.addAttribute("result", dto);
         return "index";
     }

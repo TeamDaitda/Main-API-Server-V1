@@ -2,9 +2,7 @@ package com.daitda.backend.image.service;
 
 import com.daitda.backend.image.domain.Image;
 import com.daitda.backend.image.domain.ImageRepository;
-import com.daitda.backend.image.dto.ImageListResponseDto;
-import com.daitda.backend.image.dto.ImageResponseDto;
-import com.daitda.backend.image.dto.ImageSaveRequestDto;
+import com.daitda.backend.image.dto.ImageDto;
 import com.daitda.backend.user.domain.Users;
 import com.daitda.backend.user.domain.UsersRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +19,7 @@ public class ImageService {
     private final UsersRepository usersRepository;
 
     @Transactional
-    public Long save(ImageSaveRequestDto requestDto) {
+    public Long save(ImageDto.SaveRequest requestDto) {
         Users users = usersRepository.findById(requestDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("해당 Id가 존재하지 않습니다."));
         Image image = new Image(requestDto.getPath(), users);
         imageRepository.save(image);
@@ -35,9 +33,9 @@ public class ImageService {
     }
 
     @Transactional
-    public ImageResponseDto findById(Long id) {
+    public ImageDto.Response findById(Long id) {
         Image entity = imageRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 Id가 존재하지 않습니다."));
-        return new ImageResponseDto(entity);
+        return new ImageDto.Response(entity);
     }
 
     @Transactional
@@ -46,9 +44,9 @@ public class ImageService {
     }
 
     @Transactional(readOnly = true)
-    public List<ImageListResponseDto> findAllDesc() {
+    public List<ImageDto.ListResponse> findAllDesc() {
         return imageRepository.findAllDesc().stream()
-                .map(ImageListResponseDto::new)
+                .map(ImageDto.ListResponse::new)
                 .collect(Collectors.toList());
     }
 }

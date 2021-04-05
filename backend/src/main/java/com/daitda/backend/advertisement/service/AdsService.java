@@ -1,16 +1,13 @@
 package com.daitda.backend.advertisement.service;
 
+import com.daitda.backend.advertisement.dto.*;
 import com.daitda.backend.advertisement_log.domain.AdLogs;
 import com.daitda.backend.advertisement_log.domain.AdLogsRepository;
 import com.daitda.backend.advertisement.domain.Ads;
 import com.daitda.backend.advertisement.domain.AdsRepository;
+import com.daitda.backend.advertisement_log.dto.AdLogsDto;
 import com.daitda.backend.user.domain.Users;
 import com.daitda.backend.user.domain.UsersRepository;
-import com.daitda.backend.advertisement_log.dto.AdLogsListResponseDto;
-import com.daitda.backend.advertisement.dto.AdsListResponseDto;
-import com.daitda.backend.advertisement.dto.AdsResponseDto;
-import com.daitda.backend.advertisement.dto.AdsSaveRequestDto;
-import com.daitda.backend.advertisement.dto.AdsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,12 +24,12 @@ public class AdsService {
     private final AdLogsRepository adLogsRepository;
 
     @Transactional
-    public Long save(AdsSaveRequestDto requestDto) {
+    public Long save(AdsDto.SaveRequest requestDto) {
         return adsRepository.save(requestDto.toEntity()).getId();
     }
 
     @Transactional
-    public Long update(AdsUpdateRequestDto requestDto) {
+    public Long update(AdsDto.UpdateRequest requestDto) {
         Users users = usersRepository.findById(requestDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id = " + requestDto.getUserId()));
         Ads ads = adsRepository.findById(requestDto.getAdId()).orElseThrow(() -> new IllegalArgumentException("해당 광고가 없습니다. id = " + requestDto.getAdId()));
         AdLogs adLogs = new AdLogs(users, ads);
@@ -48,29 +45,29 @@ public class AdsService {
     }
 
     @Transactional
-    public AdsResponseDto findById(Long id) {
+    public AdsDto.Response findById(Long id) {
         Ads entity = adsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 광고가 없습니다. id = " + id));
-        return new AdsResponseDto(entity);
+        return new AdsDto.Response(entity);
     }
 
     @Transactional(readOnly = true)
-    public List<AdsListResponseDto> findAllDesc() {
+    public List<AdsDto.ListResponse> findAllDesc() {
         return adsRepository.findAllDesc().stream()
-                .map(AdsListResponseDto::new)
+                .map(AdsDto.ListResponse::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public List<AdLogsListResponseDto> findLogsAllDesc() {
+    public List<AdLogsDto.ListResponse> findLogsAllDesc() {
         return adLogsRepository.findAllDesc().stream()
-                .map(AdLogsListResponseDto::new)
+                .map(AdLogsDto.ListResponse::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public List<AdLogsListResponseDto> findLogsByLogsId(Long id) {
+    public List<AdLogsDto.ListResponse> findLogsByLogsId(Long id) {
         return adLogsRepository.findByAdsId(id).stream()
-                .map(AdLogsListResponseDto::new)
+                .map(AdLogsDto.ListResponse::new)
                 .collect(Collectors.toList());
     }
 }

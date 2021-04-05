@@ -5,10 +5,7 @@ import com.daitda.backend.advertisement_log.domain.AdLogsRepository;
 import com.daitda.backend.advertisement_log.dto.AdLogsListResponseDto;
 import com.daitda.backend.user.domain.Users;
 import com.daitda.backend.user.domain.UsersRepository;
-import com.daitda.backend.user.dto.UsersListResponseDto;
-import com.daitda.backend.user.dto.UsersResponseDto;
-import com.daitda.backend.user.dto.UsersSaveRequestDto;
-import com.daitda.backend.user.dto.UsersUpdateRequestDto;
+import com.daitda.backend.user.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,12 +21,12 @@ public class UsersService {
     private final AdLogsRepository adLogsRepository;
 
     @Transactional
-    public Long save(UsersSaveRequestDto requestDto) {
+    public Long save(UserDto.SaveRequest requestDto) {
         return usersRepository.save(requestDto.toEntity()).getId();
     }
 
     @Transactional
-    public Long update(Long id, UsersUpdateRequestDto requestDto) {
+    public Long update(Long id, UserDto.UpdateRequest requestDto) {
         Users users = usersRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id = " + id));
         users.updateCategory(requestDto.getCategory());
         return id;
@@ -44,22 +41,22 @@ public class UsersService {
     }
 
     @Transactional
-    public UsersResponseDto findById(Long id) {
+    public UserDto.Response findById(Long id) {
         Users entity = usersRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id = " + id));
-        return new UsersResponseDto(entity);
+        return new UserDto.Response(entity);
     }
 
     @Transactional(readOnly = true)
-    public List<UsersListResponseDto> findAllDesc() {
+    public List<UserDto.ListResponse> findAllDesc() {
         return usersRepository.findAllDesc().stream()
-                .map(UsersListResponseDto::new)
+                .map(UserDto.ListResponse::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public List<UsersListResponseDto> findByName(String name) {
+    public List<UserDto.ListResponse> findByName(String name) {
         return usersRepository.findByName(name).stream()
-                .map(UsersListResponseDto::new)
+                .map(UserDto.ListResponse::new)
                 .collect(Collectors.toList());
     }
 }

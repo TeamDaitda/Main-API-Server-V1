@@ -4,9 +4,7 @@ import com.daitda.backend.image.domain.Image;
 import com.daitda.backend.image.domain.ImageRepository;
 import com.daitda.backend.result.domain.Result;
 import com.daitda.backend.result.domain.ResultRepository;
-import com.daitda.backend.result.dto.ResultListResponseDto;
-import com.daitda.backend.result.dto.ResultResponseDto;
-import com.daitda.backend.result.dto.ResultSaveRequestDto;
+import com.daitda.backend.result.dto.ResultDto;
 import com.daitda.backend.user.domain.Users;
 import com.daitda.backend.user.domain.UsersRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,15 +34,15 @@ public class ResultService {
     }
 
     @Transactional
-    public ResultResponseDto findByUsersId(Long id) {
+    public ResultDto.Response findByUsersId(Long id) {
         Result entity = resultRepository.findByUsersId(id);
-        return new ResultResponseDto(entity);
+        return new ResultDto.Response(entity);
     }
 
     @Transactional(readOnly = true)
-    public List<ResultListResponseDto> findAllDesc() {
+    public List<ResultDto.ListResponse> findAllDesc() {
         return resultRepository.findAllDesc().stream()
-                .map(ResultListResponseDto::new)
+                .map(ResultDto.ListResponse::new)
                 .collect(Collectors.toList());
     }
 }

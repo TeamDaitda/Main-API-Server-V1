@@ -1,12 +1,9 @@
 package com.daitda.backend.advertisement.controller;
 
+import com.daitda.backend.advertisement.dto.*;
 import com.daitda.backend.advertisement.service.AdsService;
-import com.daitda.backend.advertisement_log.dto.AdLogsListResponseDto;
-import com.daitda.backend.advertisement.dto.AdsListResponseDto;
-import com.daitda.backend.advertisement.dto.AdsResponseDto;
-import com.daitda.backend.advertisement.dto.AdsSaveRequestDto;
-import com.daitda.backend.advertisement.dto.AdsUpdateRequestDto;
-import io.swagger.annotations.Api;
+import com.daitda.backend.advertisement_log.dto.AdLogsDto;
+
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,14 +21,14 @@ public class AdsController {
     @ApiOperation(value = "광고 정보 리스트 출력", notes = "모든 광고의 정보 리스트를 출력합니다.")
     @GetMapping(value = "", produces = "application/json; charset=utf8")
     @ResponseStatus(HttpStatus.OK)
-    public List<AdsListResponseDto> index() {
+    public List<AdsDto.ListResponse> index() {
         return adsService.findAllDesc();
     }
 
     @ApiOperation(value = "광고 등록", notes = "신규 광고를 등록합니다.")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Long save(@RequestBody AdsSaveRequestDto requestDto) {
+    public Long save(@RequestBody AdsDto.SaveRequest requestDto) {
         return adsService.save(requestDto);
     }
 
@@ -46,28 +43,28 @@ public class AdsController {
     @ApiOperation(value = "광고 아이디로 광고 정보 찾기", notes = "광고 아이디로 광고의 정보를 검색해 반환합니다.")
     @GetMapping(value = "/{id}", produces = "application/json; charset=utf8")
     @ResponseStatus(HttpStatus.OK)
-    public AdsResponseDto findById(@PathVariable Long id) {
+    public AdsDto.Response findById(@PathVariable Long id) {
         return adsService.findById(id);
     }
 
     @ApiOperation(value = "광고 조회수 처리", notes = "광고의 아이디를 입력받아 광고 조회수 처리를 합니다.")
     @PutMapping("/view")
     @ResponseStatus(HttpStatus.OK)
-    public Long update(@RequestBody AdsUpdateRequestDto requestDto) {
+    public Long update(@RequestBody AdsDto.UpdateRequest requestDto) {
         return adsService.update(requestDto);
     }
 
     @ApiOperation(value = "광고 로그 출력", notes = "모든 광고의 로그를 출력합니다")
     @GetMapping(value = "/log", produces = "application/json; charset=utf8")
     @ResponseStatus(HttpStatus.OK)
-    public List<AdLogsListResponseDto> logsIndex() {
+    public List<AdLogsDto.ListResponse> logsIndex() {
         return adsService.findLogsAllDesc();
     }
 
     @ApiOperation(value = "광고 아이디로 광고 로그 출력", notes = "광고의 아이디로 검색한 광고의 로그를 출력합니다.")
     @GetMapping(value = "/log/{id}", produces = "application/json; charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
-    public List<AdLogsListResponseDto> logsOneIndex(@PathVariable Long id) {
+    public List<AdLogsDto.ListResponse> logsOneIndex(@PathVariable Long id) {
         return adsService.findLogsByLogsId(id);
     }
 }
