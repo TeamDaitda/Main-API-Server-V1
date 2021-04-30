@@ -5,7 +5,6 @@ import com.daitda.backend.advertisement.domain.AdsRepository;
 import com.daitda.backend.advertisement.dto.AdsSaveRequestDto;
 import com.daitda.backend.advertisement_log.domain.AdLogsRepository;
 import com.daitda.backend.user.domain.UsersRepository;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

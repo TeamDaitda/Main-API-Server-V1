@@ -5,7 +5,6 @@ import com.daitda.backend.user.dto.UsersResponseDto;
 import com.daitda.backend.user.dto.UsersSaveRequestDto;
 import com.daitda.backend.user.dto.UsersUpdateRequestDto;
 import com.daitda.backend.user.service.UsersService;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
