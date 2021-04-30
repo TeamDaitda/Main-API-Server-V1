@@ -1,12 +1,20 @@
 plugins {
 	id 'org.springframework.boot' version '2.4.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+//	id 'java'
+
+//	war 추가
+	id 'war'
+	id 'application'
 }
+
 
 group = 'com.daitda'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+//	war 추가
+mainClassName = "com.daitda.backend.Application"
 
 repositories {
 	mavenCentral()

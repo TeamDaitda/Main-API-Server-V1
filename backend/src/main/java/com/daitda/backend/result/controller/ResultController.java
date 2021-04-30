@@ -2,9 +2,7 @@ package com.daitda.backend.result.controller;
 
 import com.daitda.backend.result.dto.ResultListResponseDto;
 import com.daitda.backend.result.dto.ResultResponseDto;
-import com.daitda.backend.result.dto.ResultSaveRequestDto;
 import com.daitda.backend.result.service.ResultService;
-import com.daitda.backend.user.dto.UsersResponseDto;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,7 +33,7 @@ public class ResultController {
     @ApiOperation(value = "기부 결과를 사용자 아이디로 찾기", notes = "기부 결과를 사용자의 아이디로 찾아 사용자의 정보를 반환합니다.")
     @GetMapping(value = "/{id}", produces = "application/json; charset=utf8")
     @ResponseStatus(HttpStatus.OK)
-    public ResultResponseDto findByUserId(@PathVariable Long id) {
+    public ResultResponseDto findByUserId(@PathVariable Long id)     {
         return resultService.findByUsersId(id);
     }
 }
