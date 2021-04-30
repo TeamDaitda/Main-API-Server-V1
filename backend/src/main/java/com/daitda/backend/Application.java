@@ -8,13 +8,31 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+// Dev
+//@Slf4j
+//@SpringBootApplication
+//@EnableAspectJAutoProxy
+//@EnableJpaAuditing
+//public class Application {
+//
+//	public static void main(String[] args) {
+//		SpringApplication.run(Application.class, args);
+//	}
+//}
+
+//War
 @Slf4j
 @SpringBootApplication
 @EnableAspectJAutoProxy
 @EnableJpaAuditing
-public class Application {
+public class Application extends SpringBootServletInitializer {
+    //	War Packaging
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 }
