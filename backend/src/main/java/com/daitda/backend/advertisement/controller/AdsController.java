@@ -6,13 +6,14 @@ import com.daitda.backend.advertisement.dto.AdsListResponseDto;
 import com.daitda.backend.advertisement.dto.AdsResponseDto;
 import com.daitda.backend.advertisement.dto.AdsSaveRequestDto;
 import com.daitda.backend.advertisement.dto.AdsUpdateRequestDto;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -24,8 +25,10 @@ public class AdsController {
     @ApiOperation(value = "광고 정보 리스트 출력", notes = "모든 광고의 정보 리스트를 출력합니다.")
     @GetMapping(value = "", produces = "application/json; charset=utf8")
     @ResponseStatus(HttpStatus.OK)
-    public List<AdsListResponseDto> index() {
-        return adsService.findAllDesc();
+    public Map<String, List<AdsListResponseDto>> index() {
+        Map<String, List<AdsListResponseDto>> result = new HashMap<>();
+        result.put("result", adsService.findAllDesc());
+        return result;
     }
 
     @ApiOperation(value = "광고 등록", notes = "신규 광고를 등록합니다.")
@@ -60,14 +63,18 @@ public class AdsController {
     @ApiOperation(value = "광고 로그 출력", notes = "모든 광고의 로그를 출력합니다")
     @GetMapping(value = "/log", produces = "application/json; charset=utf8")
     @ResponseStatus(HttpStatus.OK)
-    public List<AdLogsListResponseDto> logsIndex() {
-        return adsService.findLogsAllDesc();
+    public Map<String, List<AdLogsListResponseDto>> logsIndex() {
+        Map<String, List<AdLogsListResponseDto>> result = new HashMap<>();
+        result.put("result", adsService.findLogsAllDesc());
+        return result;
     }
 
     @ApiOperation(value = "광고 아이디로 광고 로그 출력", notes = "광고의 아이디로 검색한 광고의 로그를 출력합니다.")
     @GetMapping(value = "/log/{id}", produces = "application/json; charset=utf-8")
     @ResponseStatus(HttpStatus.OK)
-    public List<AdLogsListResponseDto> logsOneIndex(@PathVariable Long id) {
-        return adsService.findLogsByLogsId(id);
+    public Map<String, List<AdLogsListResponseDto>> logsOneIndex(@PathVariable Long id) {
+        Map<String, List<AdLogsListResponseDto>> result = new HashMap<>();
+        result.put("result", adsService.findLogsByLogsId(id));
+        return result;
     }
 }

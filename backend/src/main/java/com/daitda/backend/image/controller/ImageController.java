@@ -10,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,8 +23,10 @@ public class ImageController {
     @ApiOperation(value = "저장된 이미지 리스트 출력", notes = "저장된 모든 이미지의 정보 리스트를 출력합니다.")
     @GetMapping(value = "", produces = "application/json; charset=utf8")
     @ResponseStatus(HttpStatus.OK)
-    public List<ImageListResponseDto> index() {
-        return imageService.findAllDesc();
+    public Map<String, List<ImageListResponseDto>> index() {
+        Map<String, List<ImageListResponseDto>> result = new HashMap<>();
+        result.put("result", imageService.findAllDesc());
+        return result;
     }
 
     @ApiOperation(value = "이미지 저장 정보 저장", notes = "사용자의 이름과 저장된 이미지의 주소로 이미지를 저장합니다.")
