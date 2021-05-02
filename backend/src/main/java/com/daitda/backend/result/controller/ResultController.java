@@ -8,7 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -19,8 +21,10 @@ public class ResultController {
     @ApiOperation(value = "기부 결과 리스트 출력", notes = "모든 사용자의 기부 결과를 출력합니다.")
     @GetMapping(value = "", produces = "application/json; charset=utf8")
     @ResponseStatus(HttpStatus.OK)
-    public List<ResultListResponseDto> index() {
-        return resultService.findAllDesc();
+    public Map<String, List<ResultListResponseDto>>  index() {
+        Map<String, List<ResultListResponseDto>> result = new HashMap<>();
+        result.put("result", resultService.findAllDesc());
+        return result;
     }
 
     @ApiOperation(value = "기부 결과 등록", notes = "사용자의 기부 결과를 등록합니다.")
