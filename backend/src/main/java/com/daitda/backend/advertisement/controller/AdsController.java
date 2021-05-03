@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/ad")
+@RequestMapping("/api/ad")
 public class AdsController {
 
     private final AdsService adsService;
@@ -54,7 +54,7 @@ public class AdsController {
     }
 
     @ApiOperation(value = "광고 조회수 처리", notes = "광고의 아이디를 입력받아 광고 조회수 처리를 합니다.")
-    @PutMapping("/view")
+    @PatchMapping("/view")
     @ResponseStatus(HttpStatus.OK)
     public Long update(@RequestBody AdsUpdateRequestDto requestDto) {
         return adsService.update(requestDto);
