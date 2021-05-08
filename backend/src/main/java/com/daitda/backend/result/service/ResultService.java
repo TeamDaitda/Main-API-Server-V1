@@ -6,7 +6,6 @@ import com.daitda.backend.result.domain.Result;
 import com.daitda.backend.result.domain.ResultRepository;
 import com.daitda.backend.result.dto.ResultListResponseDto;
 import com.daitda.backend.result.dto.ResultResponseDto;
-import com.daitda.backend.result.dto.ResultSaveRequestDto;
 import com.daitda.backend.user.domain.Users;
 import com.daitda.backend.user.domain.UsersRepository;
 import lombok.RequiredArgsConstructor;
