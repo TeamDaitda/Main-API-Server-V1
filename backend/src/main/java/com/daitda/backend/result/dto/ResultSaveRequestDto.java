@@ -1,6 +1,5 @@
 package com.daitda.backend.result.dto;
 
-import com.daitda.backend.result.domain.Result;
 import lombok.Builder;
 import lombok.Getter;
 
