@@ -15,7 +15,7 @@ public class ResultResponseDto {
 
     public ResultResponseDto(Result entity){
 
-        this.userId = entity.getUsers().getId();
+        this.userId = entity.getId();
         this.name = entity.getUsers().getName();
         this.phone = entity.getUsers().getPhone();
         this.category = entity.getUsers().getCategory();
