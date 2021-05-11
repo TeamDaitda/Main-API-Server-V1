@@ -28,7 +28,7 @@ public class ResultService {
                 .findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id = " + id));
         Image image = imageRepository
-                .findByUsersId(id).get(0);
+                .findByUsersId(id);
         Result result = new Result(users, image);
         resultRepository.save(result);
         return result.getId();

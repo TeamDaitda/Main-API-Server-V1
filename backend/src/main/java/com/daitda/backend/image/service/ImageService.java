@@ -42,7 +42,7 @@ public class ImageService {
 
     @Transactional
     public Image findByUserId(Long id) {
-        return imageRepository.findByUsersId(id).get(0);
+        return imageRepository.findByUsersId(id);
     }
 
     @Transactional(readOnly = true)
