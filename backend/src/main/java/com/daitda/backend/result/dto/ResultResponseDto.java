@@ -5,7 +5,7 @@ import com.daitda.backend.result.domain.Result;
 import com.daitda.backend.user.domain.Users;
 import lombok.Getter;
 
-@Getter
+@Getter 
 public class ResultResponseDto {
     private final Long userId;
     private final String name;
