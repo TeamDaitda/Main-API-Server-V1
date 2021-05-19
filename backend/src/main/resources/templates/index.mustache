@@ -1,37 +1,37 @@
 {{>layout/header}}
-<h1><p>DaitDa 🖋</p></h1>
+<p><img src="https://daitda-bkt.s3.ap-northeast-2.amazonaws.com/logo/Daitda_logos_Le_black.png"></p>
 <div id="container">
     <table class="table table-horizontal table-bordered">
     <thead>
-{{#result}}
-<!--<span class="badge   badge-pill    badge-primary">Primary</span>-->
-<!--<span class="badge badge-pill badge-secondary">Secondary</span>-->
-<!--<span class="badge badge-pill badge-success">Success</span>-->
-<!--<span class="badge badge-pill badge-danger">Danger</span>-->
-<!--<span class="badge badge-pill badge-warning">Warning</span>-->
-<!--<span class="badge badge-pill badge-info">Info</span>-->
-<!--<span class="badge badge-pill badge-light">Light</span>-->
-<tr>
-        <th>기부자 성함</th>
-        <th>{{name}} <span class="badge   badge-pill badge-dark">{{userId}}번째 기부자</span>
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>기부자 휴대폰</td>
-        <td>{{phone}}</td>
-    </tr>
-    <tr>
-        <td>기부한 곳</td>
-        <td>{{category}}</td>
-    </tr>
-    <tr>
-        <td colspan="2"><p><img src={{path}}></p></td>
-    </tr>
-{{/result}}
+        {{#result}}
+        <!--<span class="badge   badge-pill    badge-primary">Primary</span>-->
+        <!--<span class="badge badge-pill badge-secondary">Secondary</span>-->
+        <!--<span class="badge badge-pill badge-success">Success</span>-->
+        <!--<span class="badge badge-pill badge-danger">Danger</span>-->
+        <!--<span class="badge badge-pill badge-warning">Warning</span>-->
+        <!--<span class="badge badge-pill badge-info">Info</span>-->
+        <!--<span class="badge badge-pill badge-light">Light</span>-->
+        <tr>
+            <td>기부자 성함</td>
+            <td>{{name}} <span class="badge   badge-pill badge-dark">{{userId}}번째 기부자</span>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>기부자 휴대폰</td>
+            <td>{{phone}}</td>
+        </tr>
+        <tr>
+            <td>기부한 곳</td>
+            <td>{{category}}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><p><img src={{path}}></p></td>
+        </tr>
+        {{/result}}
     </tbody>
-</table>
+    </table>
 </div>
 
 {{>layout/footer}}
